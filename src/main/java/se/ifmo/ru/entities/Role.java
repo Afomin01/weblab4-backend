@@ -22,6 +22,12 @@ public class Role implements GrantedAuthority {
 
     @Transient
     @ManyToMany(mappedBy = "roles")
+    @JoinTable(
+            name = "USER_ROLES",
+            joinColumns = @JoinColumn(
+                    name = "ROLE_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "USER_ID", referencedColumnName = "ID"))
     private Set<User> users;
 
     public Role(String name) {
