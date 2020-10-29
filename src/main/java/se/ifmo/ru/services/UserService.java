@@ -6,17 +6,26 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import se.ifmo.ru.entities.User;
-import se.ifmo.ru.repositories.UsersCrudRepository;
+import se.ifmo.ru.repositories.UserRepository;
 
 @Service
 public class UserService implements UserDetailsService {
 
     @Autowired
-    private UsersCrudRepository usersCrudRepository;
+    private UserRepository userRepository;
+
+    public long getIDByUsername(String username){
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            return -1;
+        }
+
+        return user.getId();
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = usersCrudRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username);
 
         if (user == null) {
             throw new UsernameNotFoundException("User not found");

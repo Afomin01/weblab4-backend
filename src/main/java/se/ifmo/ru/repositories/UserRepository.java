@@ -7,6 +7,6 @@ import se.ifmo.ru.entities.Entry;
 import se.ifmo.ru.entities.User;
 
 @Repository
-public interface UsersCrudRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends CrudRepository<User, Long> {
     User findByUsername(String username);
 }

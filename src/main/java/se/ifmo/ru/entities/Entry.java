@@ -31,11 +31,23 @@ public class Entry {
     @Column(name = "USER_ID")
     private long userID;
 
-    public Entry(double x, double y, double r, boolean result, long clientID) {
+    public Entry(double x, double y, double r, long userID) {
         this.x = x;
         this.y = y;
         this.r = r;
-        this.result = result;
         this.userID = userID;
+        check();
+    }
+
+    public void check(){
+        if(x<=0 && y>=0){
+            result =  y<=r && x>=-r;
+        }else if(x<=0 && y<=0){
+            result = -y <= 2 * x + r/2;
+        }else if(x>=0 && y<=0){
+            result = x * x + y * y <= r * r;
+        }else if(y>0 && x>0){
+            result = false;
+        }else result = false;
     }
 }

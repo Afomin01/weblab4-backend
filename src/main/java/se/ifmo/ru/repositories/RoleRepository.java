@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import se.ifmo.ru.entities.Role;
 
 @Repository
-public interface RolesCrudRepository extends CrudRepository<Role, Long> {
+public interface RoleRepository extends CrudRepository<Role, Long> {
 }
