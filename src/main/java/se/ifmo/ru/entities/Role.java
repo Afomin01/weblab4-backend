@@ -20,6 +20,11 @@ public class Role implements GrantedAuthority {
     @Column(name = "NAME")
     private String name;
 
+    public Role(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     @Transient
     @ManyToMany(mappedBy = "roles")
     @JoinTable(

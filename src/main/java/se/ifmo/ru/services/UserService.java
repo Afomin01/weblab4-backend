@@ -5,14 +5,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import se.ifmo.ru.entities.Role;
 import se.ifmo.ru.entities.User;
 import se.ifmo.ru.repositories.UserRepository;
+
+import java.util.Collections;
 
 @Service
 public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+
+    public void addUser(User user) {
+        user.setRoles(Collections.singleton(new Role(1L, "USER")));
+        userRepository.save(user);
+    }
 
     public long getIDByUsername(String username){
         User user = userRepository.findByUsername(username);
