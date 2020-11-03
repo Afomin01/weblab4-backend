@@ -18,7 +18,7 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
 
     public void addUser(User user) {
-        user.setRoles(Collections.singleton(new Role(1L, "USER")));
+        user.setRoles(Collections.singletonList(new Role(1L, "USER")));
         userRepository.save(user);
     }
 

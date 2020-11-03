@@ -2,10 +2,11 @@ package se.ifmo.ru.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name="ROLES")
@@ -25,15 +26,9 @@ public class Role implements GrantedAuthority {
         this.name = name;
     }
 
-    @Transient
     @ManyToMany(mappedBy = "roles")
-    @JoinTable(
-            name = "USER_ROLES",
-            joinColumns = @JoinColumn(
-                    name = "ROLE_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "USER_ID", referencedColumnName = "ID"))
-    private Set<User> users;
+    @ToString.Exclude
+    private List<User> users;
 
     public Role(String name) {
         this.name = name;
