@@ -22,13 +22,8 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public long getIDByUsername(String username){
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
-            return -1;
-        }
-
-        return user.getId();
+    public User getByUsername(String username){
+        return userRepository.findByUsername(username);
     }
 
     @Override

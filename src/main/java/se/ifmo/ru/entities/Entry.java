@@ -1,5 +1,6 @@
 package se.ifmo.ru.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.Type;
 
@@ -28,14 +29,18 @@ public class Entry {
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean result;
 
-    @Column(name = "USER_ID")
-    private long userID;
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
+    private User user;
 
-    public Entry(double x, double y, double r, long userID) {
+    public Entry(double x, double y, double r, User user) {
         this.x = x;
         this.y = y;
         this.r = r;
-        this.userID = userID;
+        this.user = user;
         check();
     }
 

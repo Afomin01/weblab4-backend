@@ -2,7 +2,9 @@ package se.ifmo.ru.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import se.ifmo.ru.entities.Entry;
+import se.ifmo.ru.entities.User;
 import se.ifmo.ru.repositories.EntryRepository;
 
 import java.util.List;
@@ -13,17 +15,18 @@ public class EntryService {
     @Autowired
     EntryRepository entryRepository;
 
-    public void addEntry(double x, double y, double r, long clientID){
-        Entry entry = new Entry(x,y,r,clientID);
+    public void addEntry(double x, double y, double r, User user){
+        Entry entry = new Entry(x, y, r, user);
 
         entryRepository.save(entry);
     }
 
-    public List<Entry> getAllEntries(){
-        return entryRepository.findAll();
+    public List<Entry> getUserEntries(User user){
+        return entryRepository.findByUser(user);
     }
 
-    public void deleteAllClientEntries(long userID){
-        entryRepository.deleteAllByUserID(userID);
+    @Transactional
+    public void deleteUserEntries(User user) {
+        entryRepository.deleteByUser(user);
     }
 }

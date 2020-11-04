@@ -1,6 +1,8 @@
 package se.ifmo.ru.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
@@ -28,6 +30,8 @@ public class Role implements GrantedAuthority {
 
     @ManyToMany(mappedBy = "roles")
     @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
     private List<User> users;
 
     public Role(String name) {

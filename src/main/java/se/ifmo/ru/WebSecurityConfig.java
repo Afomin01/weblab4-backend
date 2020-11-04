@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
                 .antMatchers("/signup").not().fullyAuthenticated()
                 .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/main").hasRole("USER")
+                .antMatchers("/entries").hasRole("USER")
         .and().httpBasic()
         .and().sessionManagement().disable();
     }
