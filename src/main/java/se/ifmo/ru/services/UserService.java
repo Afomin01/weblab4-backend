@@ -9,6 +9,8 @@ import se.ifmo.ru.entities.Role;
 import se.ifmo.ru.entities.User;
 import se.ifmo.ru.repositories.UserRepository;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 @Service
@@ -18,8 +20,12 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
 
     public void addUser(User user) {
-        user.setRoles(Collections.singletonList(new Role(1L, "USER")));
+        user.setRoles(Arrays.asList(new Role(1L, "ROLE_USER")));
         userRepository.save(user);
+    }
+
+    public boolean doesUserExist(String username){
+        return userRepository.countAllByUsername(username) != 0;
     }
 
     public User getByUsername(String username){

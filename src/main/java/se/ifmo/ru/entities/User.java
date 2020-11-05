@@ -43,6 +43,11 @@ public class User implements UserDetails {
     @JsonIgnore
     private List<Entry> entries;
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     @Override
     @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {

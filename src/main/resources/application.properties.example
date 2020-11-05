@@ -4,4 +4,4 @@ spring.datasource.password=
 
 server.port=6203
 
-spring.data.rest.base-path=/api
+server.servlet.context-path=/api
