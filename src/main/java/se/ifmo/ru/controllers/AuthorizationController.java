@@ -26,10 +26,18 @@ public class AuthorizationController {
     @PostMapping("/signup")
     ResponseEntity<String> signUp(@RequestBody UserDTO userDTO) {
         if(!userService.doesUserExist(userDTO.getUsername())) {
+            if(userDTO.getPassword().length()<5)
+                return new ResponseEntity<>("Password must be at least 5 symbols long", HttpStatus.UNPROCESSABLE_ENTITY);
+            else if(userDTO.getUsername().length()<5)
+                return new ResponseEntity<>("Login must be at least 5 symbols long", HttpStatus.UNPROCESSABLE_ENTITY);
+            else if(userDTO.getUsername().matches("[^a-z[0-9]]"))
+                return new ResponseEntity<>("Login can contain only latin symbols and digits", HttpStatus.UNPROCESSABLE_ENTITY);
+
             User user = new User(userDTO.getUsername(), userDTO.getPassword());
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userService.addUser(user);
             return new ResponseEntity<>("Registered", HttpStatus.CREATED);
+
         }else return new ResponseEntity<>("This username is already in use", HttpStatus.UNPROCESSABLE_ENTITY);
     }
 }
