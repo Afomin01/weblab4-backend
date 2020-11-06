@@ -19,16 +19,16 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    public void addUser(User user) {
+    public User addUser(User user) {
         user.setRoles(Arrays.asList(new Role(1L, "ROLE_USER")));
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     public boolean doesUserExist(String username){
         return userRepository.countAllByUsername(username) != 0;
     }
 
-    public User getByUsername(String username){
+    public User getUserByName(String username){
         return userRepository.findByUsername(username);
     }
 

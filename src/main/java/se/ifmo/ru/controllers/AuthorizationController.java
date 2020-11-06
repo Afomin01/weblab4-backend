@@ -20,7 +20,7 @@ public class AuthorizationController {
 
 
     @GetMapping("/signin")
-    public void login() {
+    void login() {
     }
 
     @PostMapping("/signup")
@@ -35,8 +35,10 @@ public class AuthorizationController {
 
             User user = new User(userDTO.getUsername(), userDTO.getPassword());
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            userService.addUser(user);
-            return new ResponseEntity<>("Registered", HttpStatus.CREATED);
+            if(userService.addUser(user)!=null)
+                return new ResponseEntity<>("Registered", HttpStatus.CREATED);
+            else
+                return new ResponseEntity<>("User was not created", HttpStatus.I_AM_A_TEAPOT);
 
         }else return new ResponseEntity<>("This username is already in use", HttpStatus.UNPROCESSABLE_ENTITY);
     }
