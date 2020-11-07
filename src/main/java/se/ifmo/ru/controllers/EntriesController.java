@@ -8,6 +8,7 @@ import se.ifmo.ru.entities.User;
 import se.ifmo.ru.repositories.EntryRepository;
 import se.ifmo.ru.services.UserService;
 
+import javax.transaction.Transactional;
 import java.security.Principal;
 import java.util.Collection;
 
@@ -40,6 +41,7 @@ public class EntriesController {
 
         return entryRepository.save(entry);
     }
+
 
     @DeleteMapping
     void deleteUserEntries(Principal principal){

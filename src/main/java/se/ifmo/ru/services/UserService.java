@@ -9,6 +9,7 @@ import se.ifmo.ru.entities.Role;
 import se.ifmo.ru.entities.User;
 import se.ifmo.ru.repositories.UserRepository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
