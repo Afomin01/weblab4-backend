@@ -18,6 +18,10 @@ public class AuthorizationController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @RequestMapping("/logout")
+    void logout(){
+
+    }
 
     @GetMapping("/signin")
     void login() {

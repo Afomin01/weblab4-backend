@@ -29,11 +29,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
         http.cors()
                 .and().csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/login*").permitAll()
-                    .antMatchers("/signup").not().fullyAuthenticated()
+                    .antMatchers("/authorization/*").not().fullyAuthenticated()
                     .antMatchers("/admin").hasRole("ADMIN")
                     .antMatchers("/entries").hasRole("USER")
-                .and().httpBasic();
+                .and().httpBasic()
+                .and()
+                    .logout()
+                    .logoutUrl("/authorization/logout")
+                    .deleteCookies("JSESSIONID")
+                    .invalidateHttpSession(true);
+
     }
 
     @Bean
