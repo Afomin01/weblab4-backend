@@ -45,14 +45,28 @@ public class Entry {
     }
 
     public void check(){
-        if(x<=0 && y>=0){
-            result =  y<=r && x>=-r;
-        }else if(x<=0 && y<=0){
-            result = -y <= 2 * x + r/2;
-        }else if(x>=0 && y<=0){
-            result = x * x + y * y <= r * r;
-        }else if(y>0 && x>0){
-            result = false;
-        }else result = false;
+        if(r>0) {
+            if (x <= 0 && y >= 0) {
+                result = y <= r && x >= -r;
+            } else if (x <= 0 && y <= 0) {
+                result = -y <= x + r/2;
+            } else if (x >= 0 && y <= 0) {
+                result = x * x + y * y <= r * r;
+            } else if (y > 0 && x > 0) {
+                result = false;
+            } else result = false;
+        }else if(r<0){
+            if (x <= 0 && y >= 0) {
+                result = x * x + y * y <= r * r;
+            } else if (x >= 0 && y >= 0) {
+                result = x<=-y+(-r/2);
+            } else if (x >= 0 && y <= 0) {
+                result = x <= -r && y >= r;
+            } else if (y < 0 && x < 0) {
+                result = false;
+            } else result = false;
+        }else{
+            result = x==0 && y==0;
+        }
     }
 }
