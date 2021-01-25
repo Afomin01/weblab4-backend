@@ -22,12 +22,12 @@ All data must be stored using **Oracle DB**.
 | /api/authorization/signup    | POST       | Create new user                                        |
 | /api/authorization/signin    | GET        | Sign in for existing user                              |
 | /api/authorization/logout    | GET        | Logout and close session                               |
-|                              |            |                                                        |
+| &#xfeff;                     |            |                                                        |
 | /api/entries                 | POST       | Check X Y R for hit and add new entry to database      |
 | /api/entries                 | DELETE     | Delete all user's entries                              |
 | /api/entries                 | GET        | Get list of all user's entries                         |
 | /api/entries/{id}            | GET        | Get entry by id                                        |
-|                              |            |                                                        |
+| &#xfeff;                     |            |                                                        |
 | /api/admin/users             | GET        | Get list of all users                                  |
 | /api/admin/entries           | GET        | Get list of all entries in DB                          |
 | /api/admin/users/{id}        | DELETE     | Delete user by id                                      |
