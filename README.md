@@ -1,6 +1,8 @@
 # weblab4-backend
 Web programming lab work 4 backend made at ITMO University by Artem Bakin and Dmitry Kupershtein.
 
+React + Redux [frontend](https://github.com/Afomin01/weblab4-frontend) 
+
 ## Task
 Develop a **RESTful backend on Spring** that determines whether a point on a coordinate plane falls into a given area. This area has a variable radius R.
 
